@@ -6,13 +6,13 @@
 
 CREATE TABLE `wallets` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` text COLLATE utf8mb4_unicode_ci,
+  `title` text COLLATE utf8mb4,
   `user_id` bigint UNSIGNED DEFAULT NULL,
   `amount` double DEFAULT NULL,
   `status` tinyint DEFAULT '1' COMMENT '1- Active , 0- InActive',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
 
 -- --------------------------------------------------------
 --
@@ -36,12 +36,12 @@ CREATE TABLE `wallet_histories` (
   `id` bigint UNSIGNED NOT NULL,
   `user_id` bigint DEFAULT NULL,
   `datetime` timestamp NULL DEFAULT NULL,
-  `activity_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `activity_message` text COLLATE utf8mb4_unicode_ci,
-  `activity_data` text COLLATE utf8mb4_unicode_ci,
+  `activity_type` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `activity_message` text COLLATE utf8mb4,
+  `activity_data` text COLLATE utf8mb4,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
 
 --
 -- Indexes for table `wallet_histories`
@@ -56,14 +56,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (52, '2022_03_30_04
 CREATE TABLE `sub_categories` (
   `id` bigint UNSIGNED NOT NULL,
   `category_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(100) COLLATE utf8mb4 DEFAULT NULL,
+  `description` text COLLATE utf8mb4,
   `status` tinyint DEFAULT '1' COMMENT '1- Active , 0- InActive',
   `is_featured` tinyint DEFAULT '0',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
 
 ALTER TABLE `sub_categories`
   ADD PRIMARY KEY (`id`),
@@ -77,14 +77,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (53, '2022_03_31_04
 
 CREATE TABLE `service_proofs` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `title` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `description` text COLLATE utf8mb4,
   `service_id` bigint UNSIGNED DEFAULT NULL,
   `booking_id` bigint UNSIGNED DEFAULT NULL,
   `user_id` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
 
 ALTER TABLE `service_proofs`
   ADD PRIMARY KEY (`id`),
@@ -104,13 +104,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (54, '2022_04_06_10
 
 CREATE TABLE `static_data` (
   `id` bigint UNSIGNED NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `label` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `value` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `label` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `value` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
   `status` tinyint DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
 
 
 INSERT INTO `static_data` (`id`, `type`, `label`, `value`, `status`, `created_at`, `updated_at`) VALUES
@@ -130,10 +130,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (55, '2022_04_21_04
 CREATE TABLE `plan_limits` (
   `id` bigint UNSIGNED NOT NULL,
   `plan_id` bigint UNSIGNED DEFAULT NULL,
-  `plan_limitation` text COLLATE utf8mb4_unicode_ci,
+  `plan_limitation` text COLLATE utf8mb4,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
 
 ALTER TABLE `plan_limits`
   ADD PRIMARY KEY (`id`),
