@@ -16,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8mb4_general_ci */;
 
 --
 -- Database: `handyman_service`
@@ -30,23 +30,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `app_settings` (
   `id` bigint UNSIGNED NOT NULL,
-  `site_name` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `site_email` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `site_logo` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `site_favicon` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `site_description` longtext COLLATE utf8mb4,
-  `site_copyright` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `facebook_url` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `instagram_url` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `twitter_url` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `linkedin_url` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `remember_token` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `language_option` text COLLATE utf8mb4,
-  `inquriy_email` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `helpline_number` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `time_zone` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `earning_type` varchar(255) COLLATE utf8mb4 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+  `site_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `site_email` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `site_logo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `site_favicon` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `site_description` longtext COLLATE utf8mb4_general_ci,
+  `site_copyright` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `facebook_url` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `instagram_url` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `twitter_url` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `linkedin_url` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `remember_token` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `language_option` text COLLATE utf8mb4_general_ci,
+  `inquriy_email` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `helpline_number` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `time_zone` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `earning_type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `app_settings`
@@ -73,19 +73,19 @@ CREATE TABLE `bookings` (
   `amount` double DEFAULT NULL,
   `discount` double DEFAULT NULL,
   `total_amount` double DEFAULT NULL,
-  `description` text COLLATE utf8mb4,
-  `reason` text COLLATE utf8mb4,
+  `description` text COLLATE utf8mb4_general_ci,
+  `reason` text COLLATE utf8mb4_general_ci,
   `coupon_id` bigint DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `address` text COLLATE utf8mb4,
+  `status` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_general_ci,
   `payment_id` bigint DEFAULT NULL,
-  `duration_diff` varchar(255) COLLATE utf8mb4 DEFAULT '0',
+  `duration_diff` varchar(255) COLLATE utf8mb4_general_ci DEFAULT '0',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `booking_address_id` bigint UNSIGNED DEFAULT NULL,
-  `tax` longtext COLLATE utf8mb4
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+  `tax` longtext COLLATE utf8mb4_general_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -97,13 +97,13 @@ CREATE TABLE `booking_activities` (
   `id` bigint UNSIGNED NOT NULL,
   `booking_id` bigint DEFAULT NULL,
   `datetime` timestamp NULL DEFAULT NULL,
-  `activity_type` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `activity_message` text COLLATE utf8mb4,
-  `activity_data` text COLLATE utf8mb4,
+  `activity_type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `activity_message` text COLLATE utf8mb4_general_ci,
+  `activity_data` text COLLATE utf8mb4_general_ci,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -114,12 +114,12 @@ CREATE TABLE `booking_activities` (
 CREATE TABLE `booking_address_mappings` (
   `id` bigint UNSIGNED NOT NULL,
   `booking_id` bigint UNSIGNED DEFAULT NULL,
-  `address` text COLLATE utf8mb4,
-  `latitude` text COLLATE utf8mb4,
-  `longitude` text COLLATE utf8mb4,
+  `address` text COLLATE utf8mb4_general_ci,
+  `latitude` text COLLATE utf8mb4_general_ci,
+  `longitude` text COLLATE utf8mb4_general_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -130,13 +130,13 @@ CREATE TABLE `booking_address_mappings` (
 CREATE TABLE `booking_coupon_mappings` (
   `id` bigint UNSIGNED NOT NULL,
   `booking_id` bigint DEFAULT NULL,
-  `code` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `code` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `discount` double DEFAULT NULL,
-  `discount_type` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `discount_type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -151,7 +151,7 @@ CREATE TABLE `booking_handyman_mappings` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -165,11 +165,11 @@ CREATE TABLE `booking_ratings` (
   `service_id` bigint UNSIGNED NOT NULL,
   `customer_id` bigint UNSIGNED NOT NULL,
   `rating` double DEFAULT NULL,
-  `review` longtext COLLATE utf8mb4,
+  `review` longtext COLLATE utf8mb4_general_ci,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -179,14 +179,14 @@ CREATE TABLE `booking_ratings` (
 
 CREATE TABLE `booking_statuses` (
   `id` bigint UNSIGNED NOT NULL,
-  `value` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `label` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `value` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `label` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `status` tinyint DEFAULT '1' COMMENT '0-inactive , 1 - active',
   `sequence` int DEFAULT '0',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `booking_statuses`
@@ -211,15 +211,15 @@ INSERT INTO `booking_statuses` (`id`, `value`, `label`, `status`, `sequence`, `d
 
 CREATE TABLE `categories` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4 DEFAULT NULL,
-  `description` text COLLATE utf8mb4,
-  `color` varchar(100) COLLATE utf8mb4 DEFAULT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `color` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `status` tinyint DEFAULT '1' COMMENT '1- Active , 0- InActive',
   `is_featured` tinyint DEFAULT '0',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -229,9 +229,9 @@ CREATE TABLE `categories` (
 
 CREATE TABLE `cities` (
   `id` int UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `state_id` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `cities`
@@ -48585,13 +48585,13 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 
 CREATE TABLE `countries` (
   `id` int UNSIGNED NOT NULL,
-  `code` varchar(3) COLLATE utf8mb4 NOT NULL,
-  `name` varchar(150) COLLATE utf8mb4 NOT NULL,
+  `code` varchar(3) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(150) COLLATE utf8mb4_general_ci NOT NULL,
   `dial_code` int NOT NULL,
-  `currency_name` varchar(20) COLLATE utf8mb4 NOT NULL,
-  `symbol` varchar(20) COLLATE utf8mb4 NOT NULL,
-  `currency_code` varchar(20) COLLATE utf8mb4 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+  `currency_name` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `symbol` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `currency_code` varchar(20) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `countries`
@@ -48853,15 +48853,15 @@ INSERT INTO `countries` (`id`, `code`, `name`, `dial_code`, `currency_name`, `sy
 
 CREATE TABLE `coupons` (
   `id` bigint UNSIGNED NOT NULL,
-  `code` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `discount_type` varchar(255) COLLATE utf8mb4 DEFAULT NULL COMMENT 'percentage,fixed',
+  `code` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `discount_type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'percentage,fixed',
   `discount` double DEFAULT NULL,
   `status` tinyint DEFAULT NULL,
   `expire_date` datetime DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -48876,7 +48876,7 @@ CREATE TABLE `coupon_service_mappings` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -48886,13 +48886,13 @@ CREATE TABLE `coupon_service_mappings` (
 
 CREATE TABLE `documents` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(100) COLLATE utf8mb4 DEFAULT NULL,
+  `name` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `status` tinyint DEFAULT '1',
   `is_required` tinyint DEFAULT '0',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -48902,13 +48902,13 @@ CREATE TABLE `documents` (
 
 CREATE TABLE `failed_jobs` (
   `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `connection` text COLLATE utf8mb4 NOT NULL,
-  `queue` text COLLATE utf8mb4 NOT NULL,
-  `payload` longtext COLLATE utf8mb4 NOT NULL,
-  `exception` longtext COLLATE utf8mb4 NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_general_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_general_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_general_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_general_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -48919,13 +48919,13 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `handyman_payouts` (
   `id` bigint UNSIGNED NOT NULL,
   `handyman_id` bigint UNSIGNED DEFAULT NULL,
-  `payment_method` text COLLATE utf8mb4,
-  `description` text COLLATE utf8mb4,
+  `payment_method` text COLLATE utf8mb4_general_ci,
+  `description` text COLLATE utf8mb4_general_ci,
   `amount` double DEFAULT NULL,
   `paid_date` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -48940,11 +48940,11 @@ CREATE TABLE `handyman_ratings` (
   `handyman_id` bigint UNSIGNED NOT NULL,
   `customer_id` bigint UNSIGNED NOT NULL,
   `rating` double DEFAULT NULL,
-  `review` longtext COLLATE utf8mb4,
+  `review` longtext COLLATE utf8mb4_general_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -48954,14 +48954,14 @@ CREATE TABLE `handyman_ratings` (
 
 CREATE TABLE `handyman_types` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `commission` double DEFAULT '0',
-  `type` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `status` tinyint DEFAULT '1',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `handyman_types`
@@ -48979,15 +48979,15 @@ INSERT INTO `handyman_types` (`id`, `name`, `commission`, `type`, `status`, `del
 
 CREATE TABLE `media` (
   `id` bigint UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `model_id` bigint UNSIGNED NOT NULL,
-  `uuid` char(36) COLLATE utf8mb4 DEFAULT NULL,
-  `collection_name` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `file_name` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `mime_type` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `disk` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `conversions_disk` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `uuid` char(36) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `collection_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `file_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `mime_type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `disk` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `conversions_disk` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `size` bigint UNSIGNED NOT NULL,
   `manipulations` json NOT NULL,
   `custom_properties` json NOT NULL,
@@ -48996,7 +48996,7 @@ CREATE TABLE `media` (
   `order_column` int UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49006,18 +49006,18 @@ CREATE TABLE `media` (
 
 CREATE TABLE `menus` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` text COLLATE utf8mb4,
-  `nickname` text COLLATE utf8mb4,
-  `url` text COLLATE utf8mb4,
-  `url_params` text COLLATE utf8mb4,
-  `icon` text COLLATE utf8mb4,
+  `title` text COLLATE utf8mb4_general_ci,
+  `nickname` text COLLATE utf8mb4_general_ci,
+  `url` text COLLATE utf8mb4_general_ci,
+  `url_params` text COLLATE utf8mb4_general_ci,
+  `icon` text COLLATE utf8mb4_general_ci,
   `parent_id` bigint DEFAULT NULL,
   `menu_order` bigint DEFAULT NULL,
-  `permission` text COLLATE utf8mb4,
+  `permission` text COLLATE utf8mb4_general_ci,
   `status` tinyint DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `menus`
@@ -49074,9 +49074,9 @@ INSERT INTO `menus` (`id`, `title`, `nickname`, `url`, `url_params`, `icon`, `pa
 
 CREATE TABLE `migrations` (
   `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `batch` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -49145,9 +49145,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `model_has_permissions` (
   `permission_id` bigint UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `model_id` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49157,9 +49157,9 @@ CREATE TABLE `model_has_permissions` (
 
 CREATE TABLE `model_has_roles` (
   `role_id` bigint UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `model_id` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `model_has_roles`
@@ -49179,15 +49179,15 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 --
 
 CREATE TABLE `notifications` (
-  `id` char(36) COLLATE utf8mb4 NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `notifiable_type` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `id` char(36) COLLATE utf8mb4_general_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `notifiable_type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `notifiable_id` bigint UNSIGNED NOT NULL,
-  `data` text COLLATE utf8mb4 NOT NULL,
+  `data` text COLLATE utf8mb4_general_ci NOT NULL,
   `read_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49196,10 +49196,10 @@ CREATE TABLE `notifications` (
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49214,14 +49214,14 @@ CREATE TABLE `payments` (
   `datetime` datetime DEFAULT NULL,
   `discount` double DEFAULT '0',
   `total_amount` double DEFAULT '0',
-  `payment_type` varchar(100) COLLATE utf8mb4 NOT NULL,
-  `txn_id` varchar(100) COLLATE utf8mb4 DEFAULT NULL,
-  `payment_status` varchar(20) COLLATE utf8mb4 DEFAULT NULL COMMENT 'pending, paid , failed',
-  `other_transaction_detail` text COLLATE utf8mb4,
+  `payment_type` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `txn_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `payment_status` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'pending, paid , failed',
+  `other_transaction_detail` text COLLATE utf8mb4_general_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49231,15 +49231,15 @@ CREATE TABLE `payments` (
 
 CREATE TABLE `payment_gateways` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(100) COLLATE utf8mb4 DEFAULT NULL,
-  `type` varchar(100) COLLATE utf8mb4 DEFAULT NULL,
+  `title` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `type` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `status` tinyint DEFAULT '1' COMMENT '1- Active , 0- InActive',
   `is_test` tinyint DEFAULT '1' COMMENT '1- Yes , 0- No',
-  `value` text COLLATE utf8mb4,
-  `live_value` text COLLATE utf8mb4,
+  `value` text COLLATE utf8mb4_general_ci,
+  `live_value` text COLLATE utf8mb4_general_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49249,12 +49249,12 @@ CREATE TABLE `payment_gateways` (
 
 CREATE TABLE `permissions` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `parent_id` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `permissions`
@@ -49344,15 +49344,15 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `parent_id`, `created_at`
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `tokenable_id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4 NOT NULL,
-  `abilities` text COLLATE utf8mb4,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_general_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_general_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49362,15 +49362,15 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `plans` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `identifier` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `identifier` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `trial_period` bigint DEFAULT NULL,
   `amount` double DEFAULT NULL,
   `status` tinyint DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `plans`
@@ -49390,13 +49390,13 @@ INSERT INTO `plans` (`id`, `title`, `identifier`, `type`, `trial_period`, `amoun
 CREATE TABLE `provider_address_mappings` (
   `id` bigint UNSIGNED NOT NULL,
   `provider_id` bigint UNSIGNED DEFAULT NULL,
-  `address` text COLLATE utf8mb4,
-  `latitude` text COLLATE utf8mb4,
-  `longitude` text COLLATE utf8mb4,
+  `address` text COLLATE utf8mb4_general_ci,
+  `latitude` text COLLATE utf8mb4_general_ci,
+  `longitude` text COLLATE utf8mb4_general_ci,
   `status` tinyint DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49412,7 +49412,7 @@ CREATE TABLE `provider_documents` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49423,13 +49423,13 @@ CREATE TABLE `provider_documents` (
 CREATE TABLE `provider_payouts` (
   `id` bigint UNSIGNED NOT NULL,
   `provider_id` bigint UNSIGNED DEFAULT NULL,
-  `payment_method` text COLLATE utf8mb4,
-  `description` text COLLATE utf8mb4,
+  `payment_method` text COLLATE utf8mb4_general_ci,
+  `description` text COLLATE utf8mb4_general_ci,
   `amount` double DEFAULT NULL,
   `paid_date` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49443,7 +49443,7 @@ CREATE TABLE `provider_service_address_mappings` (
   `provider_address_id` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49455,17 +49455,17 @@ CREATE TABLE `provider_subscriptions` (
   `id` bigint UNSIGNED NOT NULL,
   `plan_id` bigint UNSIGNED DEFAULT NULL,
   `user_id` bigint DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `identifier` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `identifier` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `start_at` datetime DEFAULT NULL,
   `end_at` datetime DEFAULT NULL,
   `amount` double DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `payment_id` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `payment_id` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49479,7 +49479,7 @@ CREATE TABLE `provider_taxes` (
   `tax_id` bigint DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49489,14 +49489,14 @@ CREATE TABLE `provider_taxes` (
 
 CREATE TABLE `provider_types` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `commission` double DEFAULT '0',
   `status` tinyint DEFAULT '1',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `type` varchar(255) COLLATE utf8mb4 DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+  `type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `provider_types`
@@ -49514,12 +49514,12 @@ INSERT INTO `provider_types` (`id`, `name`, `commission`, `status`, `deleted_at`
 
 CREATE TABLE `roles` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `status` tinyint DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `roles`
@@ -49541,7 +49541,7 @@ INSERT INTO `roles` (`id`, `name`, `guard_name`, `status`, `created_at`, `update
 CREATE TABLE `role_has_permissions` (
   `permission_id` bigint UNSIGNED NOT NULL,
   `role_id` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `role_has_permissions`
@@ -49662,21 +49662,21 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 
 CREATE TABLE `services` (
   `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `category_id` bigint UNSIGNED NOT NULL,
   `provider_id` bigint UNSIGNED NOT NULL,
   `price` double DEFAULT '0',
-  `type` varchar(255) COLLATE utf8mb4 DEFAULT '1' COMMENT 'fixed , hourly',
-  `duration` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT '1' COMMENT 'fixed , hourly',
+  `duration` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `discount` double DEFAULT NULL COMMENT 'in percentage',
   `status` tinyint DEFAULT '1',
-  `description` text COLLATE utf8mb4,
+  `description` text COLLATE utf8mb4_general_ci,
   `is_featured` tinyint DEFAULT '0',
   `added_by` bigint DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49686,13 +49686,13 @@ CREATE TABLE `services` (
 
 CREATE TABLE `service_faqs` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(100) COLLATE utf8mb4 DEFAULT NULL,
-  `description` text COLLATE utf8mb4,
+  `title` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
   `service_id` bigint UNSIGNED DEFAULT NULL,
   `status` tinyint DEFAULT '1' COMMENT '1- Active , 0- InActive',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49702,10 +49702,10 @@ CREATE TABLE `service_faqs` (
 
 CREATE TABLE `settings` (
   `id` int UNSIGNED NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `key` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `value` text COLLATE utf8mb4
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+  `type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `key` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `value` text COLLATE utf8mb4_general_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `settings`
@@ -49735,15 +49735,15 @@ INSERT INTO `settings` (`id`, `type`, `key`, `value`) VALUES
 
 CREATE TABLE `sliders` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `description` text COLLATE utf8mb4,
-  `type` varchar(255) COLLATE utf8mb4 DEFAULT NULL COMMENT 'service',
-  `type_id` varchar(255) COLLATE utf8mb4 DEFAULT NULL COMMENT 'service_id',
+  `title` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'service',
+  `type_id` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'service_id',
   `status` tinyint DEFAULT '1',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -49753,9 +49753,9 @@ CREATE TABLE `sliders` (
 
 CREATE TABLE `states` (
   `id` int UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `country_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `states`
@@ -53895,13 +53895,13 @@ CREATE TABLE `subscription_transactions` (
   `subscription_plan_id` bigint UNSIGNED DEFAULT NULL,
   `user_id` bigint DEFAULT NULL,
   `amount` double DEFAULT NULL,
-  `payment_type` varchar(100) COLLATE utf8mb4 NOT NULL,
-  `txn_id` varchar(100) COLLATE utf8mb4 DEFAULT NULL,
-  `payment_status` varchar(20) COLLATE utf8mb4 DEFAULT NULL COMMENT 'pending, paid , failed',
-  `other_transaction_detail` text COLLATE utf8mb4,
+  `payment_type` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `txn_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `payment_status` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'pending, paid , failed',
+  `other_transaction_detail` text COLLATE utf8mb4_general_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -53911,13 +53911,13 @@ CREATE TABLE `subscription_transactions` (
 
 CREATE TABLE `taxes` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(100) COLLATE utf8mb4 DEFAULT NULL,
-  `type` varchar(100) COLLATE utf8mb4 DEFAULT '1' COMMENT 'fixed , percent',
+  `title` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `type` varchar(100) COLLATE utf8mb4_general_ci DEFAULT '1' COMMENT 'fixed , percent',
   `value` double DEFAULT NULL,
   `status` tinyint DEFAULT '1' COMMENT '1- Active , 0- InActive',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -53927,36 +53927,36 @@ CREATE TABLE `taxes` (
 
 CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
-  `username` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `first_name` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `last_name` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `user_type` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `contact_number` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `username` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `first_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `last_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `contact_number` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `country_id` bigint UNSIGNED DEFAULT NULL,
   `state_id` bigint UNSIGNED DEFAULT NULL,
   `city_id` bigint UNSIGNED DEFAULT NULL,
   `provider_id` bigint UNSIGNED DEFAULT NULL,
-  `address` text COLLATE utf8mb4,
-  `player_id` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `address` text COLLATE utf8mb4_general_ci,
+  `player_id` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `status` tinyint DEFAULT '1',
-  `display_name` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `display_name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `providertype_id` bigint UNSIGNED DEFAULT NULL,
   `is_featured` tinyint DEFAULT '0',
-  `time_zone` varchar(255) COLLATE utf8mb4 NOT NULL DEFAULT 'UTC',
+  `time_zone` varchar(255) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'UTC',
   `last_notification_seen` timestamp NULL DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4 DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `login_type` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `login_type` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `service_address_id` bigint UNSIGNED DEFAULT NULL,
-  `uid` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `uid` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `handymantype_id` bigint UNSIGNED DEFAULT NULL,
   `is_subscribe` tinyint DEFAULT '0' COMMENT '1- true , 0- false'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -53982,7 +53982,7 @@ CREATE TABLE `user_favourite_services` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables

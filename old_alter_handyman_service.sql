@@ -4,13 +4,13 @@
 
 CREATE TABLE `service_faqs` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(100) COLLATE utf8mb4 DEFAULT NULL,
-  `description` text COLLATE utf8mb4,
+  `title` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
   `service_id` bigint UNSIGNED DEFAULT NULL,
   `status` tinyint DEFAULT '1' COMMENT '1- Active , 0- InActive',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 --
@@ -35,15 +35,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (47, '2022_03_03_09
 
 CREATE TABLE `plans` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `identifier` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `identifier` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `trial_period` bigint DEFAULT NULL,
   `amount` double DEFAULT NULL,
   `status` tinyint DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 ALTER TABLE `plans`
   ADD PRIMARY KEY (`id`);
@@ -67,17 +67,17 @@ CREATE TABLE `provider_subscriptions` (
   `id` bigint UNSIGNED NOT NULL,
   `plan_id` bigint UNSIGNED DEFAULT NULL,
   `user_id` bigint DEFAULT NULL,
-  `title` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `identifier` varchar(255) COLLATE utf8mb4 NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4 NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `identifier` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `start_at` datetime DEFAULT NULL,
   `end_at` datetime DEFAULT NULL,
   `amount` double DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
-  `payment_id` varchar(255) COLLATE utf8mb4 DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `payment_id` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -116,13 +116,13 @@ CREATE TABLE `subscription_transactions` (
   `subscription_plan_id` bigint UNSIGNED DEFAULT NULL,
   `user_id` bigint DEFAULT NULL,
   `amount` double DEFAULT NULL,
-  `payment_type` varchar(100) COLLATE utf8mb4 NOT NULL,
-  `txn_id` varchar(100) COLLATE utf8mb4 DEFAULT NULL,
-  `payment_status` varchar(20) COLLATE utf8mb4 DEFAULT NULL COMMENT 'pending, paid , failed',
-  `other_transaction_detail` text COLLATE utf8mb4,
+  `payment_type` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `txn_id` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `payment_status` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'pending, paid , failed',
+  `other_transaction_detail` text COLLATE utf8mb4_general_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4_general_ci COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
