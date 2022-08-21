@@ -6,7 +6,7 @@
 -- Generation Time: May 01, 2022 at 07:37 PM
 -- Server version: 8.0.28-0ubuntu0.20.04.3
 -- PHP Version: 7.4.3
-
+SET SQL_REQUIRE_PRIMARY_KEY = OFF;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
