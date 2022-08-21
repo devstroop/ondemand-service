@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 4.9.5deb2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 21, 2022 at 01:16 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Host: localhost:3306
+-- Generation Time: May 01, 2022 at 07:37 PM
+-- Server version: 8.0.28-0ubuntu0.20.04.3
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -28,32 +29,32 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `app_settings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `site_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `site_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `site_logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `site_favicon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `site_description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `site_description` longtext COLLATE utf8mb4_unicode_ci,
   `site_copyright` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `facebook_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `instagram_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `twitter_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `linkedin_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `language_option` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `language_option` text COLLATE utf8mb4_unicode_ci,
   `inquriy_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `helpline_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `time_zone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `earning_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `youtube_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `earning_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `app_settings`
 --
 
-INSERT INTO `app_settings` (`id`, `site_name`, `site_email`, `site_logo`, `site_favicon`, `site_description`, `site_copyright`, `facebook_url`, `instagram_url`, `twitter_url`, `linkedin_url`, `remember_token`, `language_option`, `inquriy_email`, `helpline_number`, `time_zone`, `earning_type`, `youtube_url`) VALUES
-(1, 'Handyman Service', NULL, NULL, NULL, NULL, 'Instafix', NULL, NULL, NULL, NULL, NULL, '[\"hi\",\"en\"]', NULL, NULL, 'Asia/Kolkata', NULL, NULL);
+INSERT INTO `app_settings` (`id`, `site_name`, `site_email`, `site_logo`, `site_favicon`, `site_description`, `site_copyright`, `facebook_url`, `instagram_url`, `twitter_url`, `linkedin_url`, `remember_token`, `language_option`, `inquriy_email`, `helpline_number`, `time_zone`, `earning_type`) VALUES
+(1, 'Handyman Service', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '[\"nl\",\"fr\",\"it\",\"pt\",\"es\",\"en\"]', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -62,29 +63,29 @@ INSERT INTO `app_settings` (`id`, `site_name`, `site_email`, `site_logo`, `site_
 --
 
 CREATE TABLE `bookings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `customer_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `service_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `provider_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `customer_id` bigint UNSIGNED DEFAULT NULL,
+  `service_id` bigint UNSIGNED DEFAULT NULL,
+  `provider_id` bigint UNSIGNED DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `start_at` datetime DEFAULT NULL,
   `end_at` datetime DEFAULT NULL,
-  `quantity` int(11) DEFAULT 0,
+  `quantity` int DEFAULT '0',
   `amount` double DEFAULT NULL,
   `discount` double DEFAULT NULL,
   `total_amount` double DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `reason` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `coupon_id` bigint(20) DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `reason` text COLLATE utf8mb4_unicode_ci,
+  `coupon_id` bigint DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `payment_id` bigint(20) DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
+  `payment_id` bigint DEFAULT NULL,
   `duration_diff` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `booking_address_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `tax` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `booking_address_id` bigint UNSIGNED DEFAULT NULL,
+  `tax` longtext COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -94,12 +95,12 @@ CREATE TABLE `bookings` (
 --
 
 CREATE TABLE `booking_activities` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `booking_id` bigint(20) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `booking_id` bigint DEFAULT NULL,
   `datetime` timestamp NULL DEFAULT NULL,
   `activity_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `activity_message` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `activity_data` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `activity_message` text COLLATE utf8mb4_unicode_ci,
+  `activity_data` text COLLATE utf8mb4_unicode_ci,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -112,11 +113,11 @@ CREATE TABLE `booking_activities` (
 --
 
 CREATE TABLE `booking_address_mappings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `booking_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `latitude` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `longitude` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `booking_id` bigint UNSIGNED DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
+  `latitude` text COLLATE utf8mb4_unicode_ci,
+  `longitude` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -128,8 +129,8 @@ CREATE TABLE `booking_address_mappings` (
 --
 
 CREATE TABLE `booking_coupon_mappings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `booking_id` bigint(20) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `booking_id` bigint DEFAULT NULL,
   `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `discount` double DEFAULT NULL,
   `discount_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -145,9 +146,9 @@ CREATE TABLE `booking_coupon_mappings` (
 --
 
 CREATE TABLE `booking_handyman_mappings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `booking_id` bigint(20) UNSIGNED NOT NULL,
-  `handyman_id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `booking_id` bigint UNSIGNED NOT NULL,
+  `handyman_id` bigint UNSIGNED NOT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -160,12 +161,12 @@ CREATE TABLE `booking_handyman_mappings` (
 --
 
 CREATE TABLE `booking_ratings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `booking_id` bigint(20) UNSIGNED NOT NULL,
-  `service_id` bigint(20) UNSIGNED NOT NULL,
-  `customer_id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `booking_id` bigint UNSIGNED NOT NULL,
+  `service_id` bigint UNSIGNED NOT NULL,
+  `customer_id` bigint UNSIGNED NOT NULL,
   `rating` double DEFAULT NULL,
-  `review` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `review` longtext COLLATE utf8mb4_unicode_ci,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -178,11 +179,11 @@ CREATE TABLE `booking_ratings` (
 --
 
 CREATE TABLE `booking_statuses` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `value` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `label` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 1 COMMENT '0-inactive , 1 - active',
-  `sequence` int(11) DEFAULT 0,
+  `status` tinyint DEFAULT '1' COMMENT '0-inactive , 1 - active',
+  `sequence` int DEFAULT '0',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -210,30 +211,16 @@ INSERT INTO `booking_statuses` (`id`, `value`, `label`, `status`, `sequence`, `d
 --
 
 CREATE TABLE `categories` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
   `color` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 1 COMMENT '1- Active , 0- InActive',
-  `is_featured` tinyint(4) DEFAULT 0,
+  `status` tinyint DEFAULT '1' COMMENT '1- Active , 0- InActive',
+  `is_featured` tinyint DEFAULT '0',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `categories`
---
-
-INSERT INTO `categories` (`id`, `name`, `description`, `color`, `status`, `is_featured`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'Plumber', 'Responsibilities include repairing pipes, tanks, and water fixtures, unclogging toilets and drains, and handling various residential plumbing requirements. You should also be able to diagnose problems, troubleshoot systems, and collaborate with other contractors when required.', '#000000', 1, 1, NULL, '2022-02-22 23:52:59', '2022-03-02 23:49:52'),
-(2, 'Smart Home', 'A smart home is \"a residence equipped with a high-tech network, linking sensors and domestic devices, appliances, and features that can be remotely monitored, accessed or controlled, and provide services that respond to the needs of its inhabitants\" (Balta-Ozkan et al., 2013).', '#000000', 1, 1, NULL, '2022-02-23 00:57:43', '2022-03-02 23:50:38'),
-(3, 'Painter', 'Able to apply paint, stain, varnish, enamel etc. to property walls, ceilings, and furniture. Able to effectively use brushes, spray guns, or rollers. Responsible for maintaining property colour scheme specifications', '#000000', 1, 1, NULL, '2022-02-23 00:59:36', '2022-03-02 23:50:55'),
-(4, 'Pest Control', 'Pest control is the regulation or management of a species defined as a pest, a member of the animal kingdom that impacts adversely on human activities', '#000000', 1, 1, NULL, '2022-02-23 01:09:07', '2022-03-02 23:51:27'),
-(5, 'Carpenter', 'Carpenters construct, install, and repair a variety of residential, commercial, and industrial structures and fixtures. In general, carpenters work with wood, steel, and concrete. Carpenters are also often involved with demolition and maintenance of these structures and fixtures.', '#000000', 1, 1, NULL, '2022-02-23 01:09:54', '2022-03-02 23:52:33'),
-(6, 'Security', NULL, '#000000', 1, 1, NULL, '2022-02-23 01:10:23', '2022-02-23 01:10:26'),
-(7, 'AC Repair', NULL, '#000000', 1, 1, NULL, '2022-02-23 01:10:59', '2022-02-23 01:11:02'),
-(8, 'Salon', NULL, '#000000', 1, 1, NULL, '2022-02-23 01:11:17', '2022-02-23 01:11:21');
 
 -- --------------------------------------------------------
 
@@ -242,9 +229,9 @@ INSERT INTO `categories` (`id`, `name`, `description`, `color`, `status`, `is_fe
 --
 
 CREATE TABLE `cities` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `state_id` int(11) DEFAULT NULL
+  `state_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -48598,10 +48585,10 @@ INSERT INTO `cities` (`id`, `name`, `state_id`) VALUES
 --
 
 CREATE TABLE `countries` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int UNSIGNED NOT NULL,
   `code` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dial_code` int(11) NOT NULL,
+  `dial_code` int NOT NULL,
   `currency_name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `symbol` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `currency_code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
@@ -48866,11 +48853,11 @@ INSERT INTO `countries` (`id`, `code`, `name`, `dial_code`, `currency_name`, `sy
 --
 
 CREATE TABLE `coupons` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `discount_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'percentage,fixed',
   `discount` double DEFAULT NULL,
-  `status` tinyint(4) DEFAULT NULL,
+  `status` tinyint DEFAULT NULL,
   `expire_date` datetime DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -48884,9 +48871,9 @@ CREATE TABLE `coupons` (
 --
 
 CREATE TABLE `coupon_service_mappings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `coupon_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `service_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `coupon_id` bigint UNSIGNED DEFAULT NULL,
+  `service_id` bigint UNSIGNED DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -48899,10 +48886,10 @@ CREATE TABLE `coupon_service_mappings` (
 --
 
 CREATE TABLE `documents` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 1,
-  `is_required` tinyint(4) DEFAULT 0,
+  `status` tinyint DEFAULT '1',
+  `is_required` tinyint DEFAULT '0',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -48915,13 +48902,13 @@ CREATE TABLE `documents` (
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -48931,10 +48918,10 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `handyman_payouts` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `handyman_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `payment_method` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `handyman_id` bigint UNSIGNED DEFAULT NULL,
+  `payment_method` text COLLATE utf8mb4_unicode_ci,
+  `description` text COLLATE utf8mb4_unicode_ci,
   `amount` double DEFAULT NULL,
   `paid_date` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -48948,13 +48935,13 @@ CREATE TABLE `handyman_payouts` (
 --
 
 CREATE TABLE `handyman_ratings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `booking_id` bigint(20) UNSIGNED NOT NULL,
-  `service_id` bigint(20) UNSIGNED NOT NULL,
-  `handyman_id` bigint(20) UNSIGNED NOT NULL,
-  `customer_id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `booking_id` bigint UNSIGNED NOT NULL,
+  `service_id` bigint UNSIGNED NOT NULL,
+  `handyman_id` bigint UNSIGNED NOT NULL,
+  `customer_id` bigint UNSIGNED NOT NULL,
   `rating` double DEFAULT NULL,
-  `review` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `review` longtext COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -48967,11 +48954,11 @@ CREATE TABLE `handyman_ratings` (
 --
 
 CREATE TABLE `handyman_types` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `commission` double DEFAULT 0,
+  `commission` double DEFAULT '0',
   `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 1,
+  `status` tinyint DEFAULT '1',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -48992,9 +48979,9 @@ INSERT INTO `handyman_types` (`id`, `name`, `commission`, `type`, `status`, `del
 --
 
 CREATE TABLE `media` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model_id` bigint(20) UNSIGNED NOT NULL,
+  `model_id` bigint UNSIGNED NOT NULL,
   `uuid` char(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `collection_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -49002,12 +48989,12 @@ CREATE TABLE `media` (
   `mime_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `disk` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `conversions_disk` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `size` bigint(20) UNSIGNED NOT NULL,
-  `manipulations` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`manipulations`)),
-  `custom_properties` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`custom_properties`)),
-  `generated_conversions` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`generated_conversions`)),
-  `responsive_images` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`responsive_images`)),
-  `order_column` int(10) UNSIGNED DEFAULT NULL,
+  `size` bigint UNSIGNED NOT NULL,
+  `manipulations` json NOT NULL,
+  `custom_properties` json NOT NULL,
+  `generated_conversions` json NOT NULL,
+  `responsive_images` json NOT NULL,
+  `order_column` int UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -49019,16 +49006,16 @@ CREATE TABLE `media` (
 --
 
 CREATE TABLE `menus` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nickname` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `url` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `url_params` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `icon` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parent_id` bigint(20) DEFAULT NULL,
-  `menu_order` bigint(20) DEFAULT NULL,
-  `permission` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 1,
+  `id` bigint UNSIGNED NOT NULL,
+  `title` text COLLATE utf8mb4_unicode_ci,
+  `nickname` text COLLATE utf8mb4_unicode_ci,
+  `url` text COLLATE utf8mb4_unicode_ci,
+  `url_params` text COLLATE utf8mb4_unicode_ci,
+  `icon` text COLLATE utf8mb4_unicode_ci,
+  `parent_id` bigint DEFAULT NULL,
+  `menu_order` bigint DEFAULT NULL,
+  `permission` text COLLATE utf8mb4_unicode_ci,
+  `status` tinyint DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -49052,13 +49039,13 @@ INSERT INTO `menus` (`id`, `title`, `nickname`, `url`, `url_params`, `icon`, `pa
 (12, 'Document', 'document', NULL, NULL, '<i class=\"ri-shopping-basket-2-line\"></i>', 0, 11, 'document list', 1, '2022-02-03 06:08:15', NULL),
 (13, 'Document List', 'documentlist', 'document.index', NULL, '<i class=\"ri-list-unordered\"></i>', 12, NULL, 'document list', 1, '2022-02-03 06:08:15', NULL),
 (14, 'Document Add', 'documentadd', 'document.create', NULL, '<i class=\"ri-add-box-line\"></i>', 12, NULL, 'document add', 1, '2022-02-03 06:08:15', NULL),
-(15, 'Booking', 'booking', 'booking.index', NULL, '<i class=\"fa fa-calendar\"></i>', 0, 6, 'booking list', 1, '2022-02-03 06:08:15', NULL),
+(15, 'Booking', 'booking', 'booking.index', NULL, '<i class=\"ri-list-unordered\"></i>', 0, 6, 'booking list', 1, '2022-02-03 06:08:15', NULL),
 (16, 'Tax', 'tax', 'tax.index', NULL, '<i class=\"fas fa-percent\"></i>', 0, 12, 'admin', 1, '2022-02-03 06:08:15', NULL),
 (17, 'Earning', 'earning', 'earning', NULL, '<i class=\"fas fa-money-bill-alt\"></i>', 0, 10, 'admin', 1, '2022-02-03 06:08:15', NULL),
 (18, 'Handyman', 'handyman', NULL, NULL, '<i class=\"las la-user-friends\"></i>', 0, 7, 'handyman list', 1, '2022-02-03 06:08:15', NULL),
 (19, 'Handyman List', 'handymanlist', 'handyman.index', NULL, '<i class=\"ri-list-unordered\"></i>', 18, NULL, 'handyman list', 1, '2022-02-03 06:08:15', NULL),
 (20, 'Handyman Pending List', 'handymanpending', 'handyman.pending', 'pending', '<i class=\"ri-list-unordered\"></i>', 18, NULL, 'handyman pending', 1, '2022-02-03 06:08:15', NULL),
-(21, 'Users', 'users', 'user.index', NULL, '<i class=\"fa fa-users\"></i>', 0, 8, 'user list', 1, '2022-02-03 06:08:15', NULL),
+(21, 'Users', 'users', 'user.index', NULL, '<i class=\"ri-list-unordered\"></i>', 0, 8, 'user list', 1, '2022-02-03 06:08:15', NULL),
 (22, 'Coupon', 'coupon', NULL, NULL, '<i class=\"ri-coupon-fill\"></i>', 0, 13, 'coupon list', 1, '2022-02-03 06:08:15', NULL),
 (23, 'Coupon List', 'couponlist', 'coupon.index', NULL, '<i class=\"ri-list-unordered\"></i>', 22, NULL, 'coupon list', 1, '2022-02-03 06:08:15', NULL),
 (24, 'Coupon Add', 'couponadd', 'coupon.create', NULL, '<i class=\"ri-add-box-line\"></i>', 22, NULL, 'coupon add', 1, '2022-02-03 06:08:15', NULL),
@@ -49083,7 +49070,7 @@ INSERT INTO `menus` (`id`, `title`, `nickname`, `url`, `url_params`, `icon`, `pa
 (43, 'SubCategory', 'subcategory', NULL, NULL, '<i class=\"ri-shopping-basket-2-line\"></i>', 0, 3, 'subcategory list', 1, '2022-02-03 06:08:15', NULL),
 (44, 'SubCategory List', 'subcategorylist', 'subcategory.index', NULL, '<i class=\"ri-list-unordered\"></i>', 43, NULL, 'subcategory list', 1, '2022-02-03 06:08:15', NULL),
 (45, 'SubCategory Add', 'subcategoryadd', 'subcategory.create', NULL, '<i class=\"ri-add-box-line\"></i>', 43, NULL, 'subcategory add', 1, '2022-02-03 06:08:15', NULL),
-(46, 'Plans', 'plans', 'plans.index', NULL, '<i class=\"ri-list-unordered\"></i>', 0, 5, 'admin', 1, '2022-02-03 06:08:15', NULL);
+(46, 'Subscription Plan', 'plans', 'plans.index', NULL, '<i class=\"ri-list-unordered\"></i>', 0, 5, 'admin', 1, '2022-02-03 06:08:15', NULL);
 
 -- --------------------------------------------------------
 
@@ -49092,9 +49079,9 @@ INSERT INTO `menus` (`id`, `title`, `nickname`, `url`, `url_params`, `icon`, `pa
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int UNSIGNED NOT NULL,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
+  `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -49163,10 +49150,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (59, '2022_04_08_071126_alter_plans_table', 1),
 (60, '2022_04_21_041519_create_static_data_table', 1),
 (61, '2022_04_22_052403_create_plan_limits_table', 1),
-(62, '2022_04_28_045146_alter_provider_subscriptions', 1),
-(63, '2022_06_04_063629_alter_users_social_image', 1),
-(64, '2022_06_08_064423_alter_users_is_available', 1),
-(65, '2022_06_29_041432_alter_app_settings_social', 1);
+(62, '2022_04_28_045146_alter_provider_subscriptions', 1);
 
 -- --------------------------------------------------------
 
@@ -49175,9 +49159,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `model_has_permissions` (
-  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `permission_id` bigint UNSIGNED NOT NULL,
   `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model_id` bigint(20) UNSIGNED NOT NULL
+  `model_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -49187,9 +49171,9 @@ CREATE TABLE `model_has_permissions` (
 --
 
 CREATE TABLE `model_has_roles` (
-  `role_id` bigint(20) UNSIGNED NOT NULL,
+  `role_id` bigint UNSIGNED NOT NULL,
   `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model_id` bigint(20) UNSIGNED NOT NULL
+  `model_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -49213,7 +49197,7 @@ CREATE TABLE `notifications` (
   `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `notifiable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `notifiable_id` bigint(20) UNSIGNED NOT NULL,
+  `notifiable_id` bigint UNSIGNED NOT NULL,
   `data` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `read_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -49239,16 +49223,16 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `payments` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `customer_id` bigint(20) UNSIGNED NOT NULL,
-  `booking_id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `customer_id` bigint UNSIGNED NOT NULL,
+  `booking_id` bigint UNSIGNED NOT NULL,
   `datetime` datetime DEFAULT NULL,
-  `discount` double DEFAULT 0,
-  `total_amount` double DEFAULT 0,
+  `discount` double DEFAULT '0',
+  `total_amount` double DEFAULT '0',
   `payment_type` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `txn_id` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `payment_status` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'pending, paid , failed',
-  `other_transaction_detail` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `other_transaction_detail` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -49261,13 +49245,13 @@ CREATE TABLE `payments` (
 --
 
 CREATE TABLE `payment_gateways` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `title` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 1 COMMENT '1- Active , 0- InActive',
-  `is_test` tinyint(4) DEFAULT 1 COMMENT '1- Yes , 0- No',
-  `value` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `live_value` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint DEFAULT '1' COMMENT '1- Active , 0- InActive',
+  `is_test` tinyint DEFAULT '1' COMMENT '1- Yes , 0- No',
+  `value` text COLLATE utf8mb4_unicode_ci,
+  `live_value` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -49279,10 +49263,10 @@ CREATE TABLE `payment_gateways` (
 --
 
 CREATE TABLE `permissions` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `parent_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `parent_id` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -49386,12 +49370,12 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `parent_id`, `created_at`
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -49404,17 +49388,17 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `plans` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `identifier` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `trial_period` bigint(20) DEFAULT NULL,
+  `trial_period` bigint DEFAULT NULL,
   `amount` double DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 1,
+  `status` tinyint DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `duration` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `duration` text COLLATE utf8mb4_unicode_ci,
+  `description` longtext COLLATE utf8mb4_unicode_ci,
   `plan_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -49434,9 +49418,9 @@ INSERT INTO `plans` (`id`, `title`, `identifier`, `type`, `trial_period`, `amoun
 --
 
 CREATE TABLE `plan_limits` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `plan_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `plan_limitation` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `plan_id` bigint UNSIGNED DEFAULT NULL,
+  `plan_limitation` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -49448,12 +49432,12 @@ CREATE TABLE `plan_limits` (
 --
 
 CREATE TABLE `provider_address_mappings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `provider_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `latitude` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `longitude` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 1,
+  `id` bigint UNSIGNED NOT NULL,
+  `provider_id` bigint UNSIGNED DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
+  `latitude` text COLLATE utf8mb4_unicode_ci,
+  `longitude` text COLLATE utf8mb4_unicode_ci,
+  `status` tinyint DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -49465,10 +49449,10 @@ CREATE TABLE `provider_address_mappings` (
 --
 
 CREATE TABLE `provider_documents` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `provider_id` bigint(20) UNSIGNED NOT NULL,
-  `document_id` bigint(20) UNSIGNED NOT NULL,
-  `is_verified` tinyint(4) DEFAULT 0,
+  `id` bigint UNSIGNED NOT NULL,
+  `provider_id` bigint UNSIGNED NOT NULL,
+  `document_id` bigint UNSIGNED NOT NULL,
+  `is_verified` tinyint DEFAULT '0',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -49481,10 +49465,10 @@ CREATE TABLE `provider_documents` (
 --
 
 CREATE TABLE `provider_payouts` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `provider_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `payment_method` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `provider_id` bigint UNSIGNED DEFAULT NULL,
+  `payment_method` text COLLATE utf8mb4_unicode_ci,
+  `description` text COLLATE utf8mb4_unicode_ci,
   `amount` double DEFAULT NULL,
   `paid_date` datetime DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -49498,9 +49482,9 @@ CREATE TABLE `provider_payouts` (
 --
 
 CREATE TABLE `provider_service_address_mappings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `service_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `provider_address_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `service_id` bigint UNSIGNED DEFAULT NULL,
+  `provider_address_id` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -49512,9 +49496,9 @@ CREATE TABLE `provider_service_address_mappings` (
 --
 
 CREATE TABLE `provider_subscriptions` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `plan_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `user_id` bigint(20) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `plan_id` bigint UNSIGNED DEFAULT NULL,
+  `user_id` bigint DEFAULT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `identifier` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -49525,9 +49509,9 @@ CREATE TABLE `provider_subscriptions` (
   `payment_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `plan_limitation` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `duration` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `plan_limitation` text COLLATE utf8mb4_unicode_ci,
+  `duration` text COLLATE utf8mb4_unicode_ci,
+  `description` longtext COLLATE utf8mb4_unicode_ci,
   `plan_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -49538,9 +49522,9 @@ CREATE TABLE `provider_subscriptions` (
 --
 
 CREATE TABLE `provider_taxes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `provider_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `tax_id` bigint(20) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `provider_id` bigint UNSIGNED DEFAULT NULL,
+  `tax_id` bigint DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -49552,10 +49536,10 @@ CREATE TABLE `provider_taxes` (
 --
 
 CREATE TABLE `provider_types` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `commission` double DEFAULT 0,
-  `status` tinyint(4) DEFAULT 1,
+  `commission` double DEFAULT '0',
+  `status` tinyint DEFAULT '1',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -49577,10 +49561,10 @@ INSERT INTO `provider_types` (`id`, `name`, `commission`, `status`, `deleted_at`
 --
 
 CREATE TABLE `roles` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` tinyint(4) DEFAULT 1,
+  `status` tinyint DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -49603,8 +49587,8 @@ INSERT INTO `roles` (`id`, `name`, `guard_name`, `status`, `created_at`, `update
 --
 
 CREATE TABLE `role_has_permissions` (
-  `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `role_id` bigint(20) UNSIGNED NOT NULL
+  `permission_id` bigint UNSIGNED NOT NULL,
+  `role_id` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -49620,22 +49604,14 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (6, 1),
 (7, 1),
 (8, 1),
-(8, 4),
 (9, 1),
-(9, 4),
 (10, 1),
-(10, 4),
 (11, 1),
-(11, 4),
 (12, 1),
 (13, 1),
-(13, 4),
 (14, 1),
-(14, 4),
 (15, 1),
-(15, 4),
 (16, 1),
-(16, 4),
 (17, 1),
 (18, 1),
 (19, 1),
@@ -49643,33 +49619,16 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (21, 1),
 (22, 1),
 (23, 1),
-(23, 4),
 (24, 1),
-(24, 4),
 (25, 1),
-(25, 4),
 (26, 1),
 (27, 1),
 (28, 1),
-(28, 2),
-(28, 3),
-(28, 4),
-(28, 5),
 (29, 1),
-(29, 4),
 (30, 1),
-(30, 4),
 (31, 1),
-(31, 2),
-(31, 3),
-(31, 4),
-(31, 5),
 (32, 1),
 (33, 1),
-(33, 2),
-(33, 3),
-(33, 4),
-(33, 5),
 (34, 1),
 (35, 1),
 (36, 1),
@@ -49681,19 +49640,16 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (42, 1),
 (43, 1),
 (44, 1),
-(44, 2),
 (45, 1),
 (46, 1),
 (47, 1),
 (48, 1),
 (49, 1),
-(49, 2),
 (50, 1),
 (51, 1),
 (52, 1),
 (53, 1),
 (54, 1),
-(54, 4),
 (55, 1),
 (56, 1),
 (57, 1),
@@ -49709,14 +49665,9 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (67, 1),
 (68, 1),
 (69, 1),
-(69, 4),
 (70, 1),
-(70, 4),
 (71, 1),
-(71, 4),
 (72, 1),
-(72, 4),
-(73, 5),
 (75, 1),
 (76, 1),
 (77, 1),
@@ -49728,7 +49679,40 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (83, 1),
 (84, 1),
 (85, 1),
-(86, 1);
+(86, 1),
+(28, 2),
+(31, 2),
+(33, 2),
+(44, 2),
+(49, 2),
+(28, 3),
+(31, 3),
+(33, 3),
+(8, 4),
+(9, 4),
+(10, 4),
+(11, 4),
+(13, 4),
+(14, 4),
+(15, 4),
+(16, 4),
+(23, 4),
+(24, 4),
+(25, 4),
+(28, 4),
+(29, 4),
+(30, 4),
+(31, 4),
+(33, 4),
+(54, 4),
+(69, 4),
+(70, 4),
+(71, 4),
+(72, 4),
+(28, 5),
+(31, 5),
+(33, 5),
+(73, 5);
 
 -- --------------------------------------------------------
 
@@ -49737,39 +49721,23 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 --
 
 CREATE TABLE `services` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_id` bigint(20) UNSIGNED NOT NULL,
-  `provider_id` bigint(20) UNSIGNED NOT NULL,
-  `price` double DEFAULT 0,
+  `category_id` bigint UNSIGNED NOT NULL,
+  `provider_id` bigint UNSIGNED NOT NULL,
+  `price` double DEFAULT '0',
   `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '1' COMMENT 'fixed , hourly',
   `duration` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `discount` double DEFAULT NULL COMMENT 'in percentage',
-  `status` tinyint(4) DEFAULT 1,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `is_featured` tinyint(4) DEFAULT 0,
-  `added_by` bigint(20) DEFAULT NULL,
+  `status` tinyint DEFAULT '1',
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `is_featured` tinyint DEFAULT '0',
+  `added_by` bigint DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `subcategory_id` bigint(20) DEFAULT NULL
+  `subcategory_id` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `services`
---
-
-INSERT INTO `services` (`id`, `name`, `category_id`, `provider_id`, `price`, `type`, `duration`, `discount`, `status`, `description`, `is_featured`, `added_by`, `deleted_at`, `created_at`, `updated_at`, `subcategory_id`) VALUES
-(1, 'Retail Shop pest control and Disinfection of entire premises', 2, 4, 500, 'fixed', '12:00', 10, 1, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', 0, 1, NULL, '2022-02-23 01:06:09', '2022-02-23 04:38:03', NULL),
-(2, 'Fixing Anroid Smart Devices around Interior and Wiring', 2, 4, 150, 'hourly', '01:00', NULL, 1, 'Open your Settings app and tap Network & internet or Connections. Depending on your device, these options may be different.', 0, 1, NULL, '2022-02-23 01:21:09', '2022-02-23 04:38:18', NULL),
-(3, 'Black and White Spot in display and blur Images', 2, 4, 1000, 'fixed', '05:00', 30, 1, 'The LCD screen is made with high-precision technology to achieve a high level of performance and picture quality. To achieve this level of performance, the backlight setting of the TV is set to maximise the screen brightness.', 1, 1, NULL, '2022-02-23 01:23:58', '2022-02-23 06:25:47', NULL),
-(4, 'Uninstallation and Flickering TV Display Screen', 2, 4, 700, 'hourly', '03:00', NULL, 1, 'A blinking or flickering television can occur randomly. This dimming TV screen effect can seem like a strobe light and show flashes of black.', 0, 1, NULL, '2022-02-23 01:26:19', '2022-02-23 04:38:36', NULL),
-(5, 'Scalp Facial', 8, 4, 1200, 'fixed', '02:30', 20, 1, 'Whether your fine hair is weighed down by an oily scalp or prone to flaky patches, a healthy scalp is essential if you want healthy hair.', 0, 1, NULL, '2022-02-23 01:34:40', '2022-02-23 06:24:45', NULL),
-(6, 'Funky Paints Painting', 3, 4, 150, 'hourly', '10:00', 0, 1, 'We take you through every step of the painting process, from the initial consultation up to the unveiling of the project. Aside from all these, we also provide an exceptional level of communication.', 1, 1, NULL, '2022-02-23 01:38:26', '2022-03-03 23:22:22', NULL),
-(7, 'Rainbow Cleaners', 2, 4, 600, 'fixed', '12:00', 10, 1, NULL, 0, 1, NULL, '2022-03-02 03:32:29', '2022-03-02 03:32:29', NULL),
-(8, 'Spray Sanitizer', 2, 4, 1000, 'hourly', '02:00', 20, 1, NULL, 0, 1, NULL, '2022-03-02 03:45:59', '2022-03-02 03:45:59', NULL),
-(9, 'Electrical repairs, rewires, and remodels', 2, 4, 600, 'fixed', '12:00', 10, 1, NULL, 1, 1, NULL, '2022-03-02 04:19:22', '2022-03-02 04:19:22', NULL),
-(10, 'drain cleaning plumbing services', 1, 4, 1500, 'fixed', '12:00', 10, 1, NULL, 0, 1, NULL, '2022-03-02 04:34:25', '2022-03-02 04:34:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -49778,11 +49746,11 @@ INSERT INTO `services` (`id`, `name`, `category_id`, `provider_id`, `price`, `ty
 --
 
 CREATE TABLE `service_faqs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `title` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `service_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 1 COMMENT '1- Active , 0- InActive',
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `service_id` bigint UNSIGNED DEFAULT NULL,
+  `status` tinyint DEFAULT '1' COMMENT '1- Active , 0- InActive',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -49794,12 +49762,12 @@ CREATE TABLE `service_faqs` (
 --
 
 CREATE TABLE `service_proofs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `service_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `booking_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `service_id` bigint UNSIGNED DEFAULT NULL,
+  `booking_id` bigint UNSIGNED DEFAULT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -49811,10 +49779,10 @@ CREATE TABLE `service_proofs` (
 --
 
 CREATE TABLE `settings` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int UNSIGNED NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `value` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -49844,26 +49812,16 @@ INSERT INTO `settings` (`id`, `type`, `key`, `value`) VALUES
 --
 
 CREATE TABLE `sliders` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'service',
   `type_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'service_id',
-  `status` tinyint(4) DEFAULT 1,
+  `status` tinyint DEFAULT '1',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `sliders`
---
-
-INSERT INTO `sliders` (`id`, `title`, `description`, `type`, `type_id`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'Retail Shop pest control and Disinfection of entire premises', NULL, 'service', '1', 1, NULL, '2022-02-23 03:35:27', '2022-02-23 03:46:33'),
-(2, 'Fixing Anroid Smart Devices around Interior and Wiring', NULL, 'service', '2', 1, NULL, '2022-02-23 03:51:08', '2022-02-23 03:51:08'),
-(3, 'Black and White Spot in display and blur Images', NULL, 'service', '3', 1, NULL, '2022-02-23 03:53:23', '2022-02-23 03:53:23'),
-(4, 'Uninstallation and Flickering TV Display Screen', NULL, 'service', '4', 1, NULL, '2022-02-23 03:55:11', '2022-02-23 03:55:11');
 
 -- --------------------------------------------------------
 
@@ -49872,9 +49830,9 @@ INSERT INTO `sliders` (`id`, `title`, `description`, `type`, `type_id`, `status`
 --
 
 CREATE TABLE `states` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `country_id` int(11) NOT NULL
+  `country_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -54011,11 +53969,11 @@ INSERT INTO `states` (`id`, `name`, `country_id`) VALUES
 --
 
 CREATE TABLE `static_data` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `label` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `value` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 1,
+  `status` tinyint DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -54038,14 +53996,14 @@ INSERT INTO `static_data` (`id`, `type`, `label`, `value`, `status`, `created_at
 --
 
 CREATE TABLE `subscription_transactions` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `subscription_plan_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `user_id` bigint(20) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `subscription_plan_id` bigint UNSIGNED DEFAULT NULL,
+  `user_id` bigint DEFAULT NULL,
   `amount` double DEFAULT NULL,
   `payment_type` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `txn_id` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `payment_status` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'pending, paid , failed',
-  `other_transaction_detail` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `other_transaction_detail` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -54057,12 +54015,12 @@ CREATE TABLE `subscription_transactions` (
 --
 
 CREATE TABLE `sub_categories` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `category_id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `category_id` bigint UNSIGNED NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 1 COMMENT '1- Active , 0- InActive',
-  `is_featured` tinyint(4) DEFAULT 0,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `status` tinyint DEFAULT '1' COMMENT '1- Active , 0- InActive',
+  `is_featured` tinyint DEFAULT '0',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -54075,11 +54033,11 @@ CREATE TABLE `sub_categories` (
 --
 
 CREATE TABLE `taxes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `title` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `type` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '1' COMMENT 'fixed , percent',
   `value` double DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 1 COMMENT '1- Active , 0- InActive',
+  `status` tinyint DEFAULT '1' COMMENT '1- Active , 0- InActive',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -54091,7 +54049,7 @@ CREATE TABLE `taxes` (
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `first_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -54099,16 +54057,16 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contact_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `state_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `city_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `provider_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country_id` bigint UNSIGNED DEFAULT NULL,
+  `state_id` bigint UNSIGNED DEFAULT NULL,
+  `city_id` bigint UNSIGNED DEFAULT NULL,
+  `provider_id` bigint UNSIGNED DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci,
   `player_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 1,
+  `status` tinyint DEFAULT '1',
   `display_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `providertype_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `is_featured` tinyint(4) DEFAULT 0,
+  `providertype_id` bigint UNSIGNED DEFAULT NULL,
+  `is_featured` tinyint DEFAULT '0',
   `time_zone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'UTC',
   `last_notification_seen` timestamp NULL DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -54117,26 +54075,22 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `login_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `service_address_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `service_address_id` bigint UNSIGNED DEFAULT NULL,
   `uid` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `handymantype_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `is_subscribe` tinyint(4) DEFAULT 0 COMMENT '1- true , 0- false',
-  `social_image` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `is_available` tinyint(4) DEFAULT 0 COMMENT '1- true , 0- false',
-  `designation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_online_time` time DEFAULT NULL
+  `handymantype_id` bigint UNSIGNED DEFAULT NULL,
+  `is_subscribe` tinyint DEFAULT '0' COMMENT '1- true , 0- false'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `user_type`, `contact_number`, `country_id`, `state_id`, `city_id`, `provider_id`, `address`, `player_id`, `status`, `display_name`, `providertype_id`, `is_featured`, `time_zone`, `last_notification_seen`, `email_verified_at`, `remember_token`, `deleted_at`, `created_at`, `updated_at`, `login_type`, `service_address_id`, `uid`, `handymantype_id`, `is_subscribe`, `social_image`, `is_available`, `designation`, `last_online_time`) VALUES
-(1, 'admin', 'Admin', 'Admin', 'admin@admin.com', '$2y$10$6HyObQ7WWO.Q4RvUxwE8SODQN/29xFyjSsRSzzw4yIt9cMdnmke.W', 'admin', '9876543210', 101, 17, 42865, NULL, NULL, NULL, 1, 'Admin Admin', NULL, 0, 'UTC', NULL, NULL, NULL, NULL, '2021-05-28 10:29:15', '2022-08-20 15:08:44', NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL),
-(2, 'demo_admin', 'Demo', 'Admin', 'demo@admin.com', '$2y$10$SlShli4gWhmjqUC36/vUKOBfrNDVmLqqFmevF.jkulpix3jIbqfmC', 'demo_admin', '4564552664', 231, 3924, 42865, NULL, NULL, NULL, 1, 'Demo Admin', NULL, 0, 'UTC', NULL, NULL, NULL, NULL, '2021-05-29 00:10:38', NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL),
-(3, 'user', 'User', 'Demo', 'demo@user.com', '$2y$10$oO6vZd3dKWIJ5z4q9spgl.kQcqu21EZ2tukS2wKUa4Gyk/MbPhhqq', 'user', '4564552664', 231, 3924, 42865, NULL, NULL, NULL, 1, 'Demo User', NULL, 0, 'UTC', NULL, NULL, NULL, NULL, '2021-05-28 07:06:58', NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL),
-(4, 'provider', 'Provider', 'Demo', 'demo@provider.com', '$2y$10$De8LDAtMa1H4PN3t0yjMVePJ7p5yQlyf.gEiseIj8sP6K/XYefyui', 'provider', '0123456789', 231, 3924, 42865, NULL, NULL, NULL, 1, 'Provider Demo', 1, 1, 'UTC', NULL, NULL, NULL, NULL, '2021-05-29 00:13:47', NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL),
-(5, 'handyman', 'Handyman', 'Demo', 'demo@handyman.com', '$2y$10$iwMCFZeN/1uILugogV7i2uwqxaYyEOTSvChWRyKfbjwhdZLuO3OsG', 'handyman', '4564552664', 181, 3924, 42865, 4, NULL, NULL, 1, 'Handyman Demo', NULL, 0, 'UTC', NULL, NULL, NULL, NULL, '2021-05-29 00:13:24', NULL, NULL, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL);
+INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `email`, `password`, `user_type`, `contact_number`, `country_id`, `state_id`, `city_id`, `provider_id`, `address`, `player_id`, `status`, `display_name`, `providertype_id`, `is_featured`, `time_zone`, `last_notification_seen`, `email_verified_at`, `remember_token`, `deleted_at`, `created_at`, `updated_at`, `login_type`, `service_address_id`, `uid`, `handymantype_id`, `is_subscribe`) VALUES
+(1, 'admin', 'Admin', 'Admin', 'admin@admin.com', '$2y$10$IOcoIzmZnMxrcuLcREcePe/L.MeDYBLy7DDWm/CREQbh/un/phbSi', 'admin', '9876543210', 231, 3924, 42865, NULL, NULL, NULL, 1, 'Admin Admin', NULL, 0, 'UTC', NULL, NULL, NULL, NULL, '2021-05-28 10:29:15', NULL, NULL, NULL, NULL, NULL, 0),
+(2, 'demo_admin', 'Demo', 'Admin', 'demo@admin.com', '$2y$10$fJwFHYH0m2Dv.c0gicCv/O18kjXw2xHgrSmuTSVXiup5KInSxI8mK', 'demo_admin', '4564552664', 231, 3924, 42865, NULL, NULL, NULL, 1, 'Demo Admin', NULL, 0, 'UTC', NULL, NULL, NULL, NULL, '2021-05-29 00:10:38', NULL, NULL, NULL, NULL, NULL, 0),
+(3, 'user', 'User', 'Demo', 'demo@user.com', '$2y$10$cUixMj1x8yAYyFyYnwMgtO.bAbY.kynY5dwSFIYol72VyZZIu7sPe', 'user', '4564552664', 231, 3924, 42865, NULL, NULL, NULL, 1, 'Demo User', NULL, 0, 'UTC', NULL, NULL, NULL, NULL, '2021-05-28 07:06:58', NULL, NULL, NULL, NULL, NULL, 0),
+(4, 'provider', 'Provider', 'Demo', 'demo@provider.com', '$2y$10$I.bWE7PYX0QylFjyt/jS2OexKEIuTyDYog6h5YYNMjdF0gCLZOAcC', 'provider', '0123456789', 231, 3924, 42865, NULL, NULL, NULL, 1, 'Provider Demo', 1, 1, 'UTC', NULL, NULL, NULL, NULL, '2021-05-29 00:13:47', NULL, NULL, NULL, NULL, NULL, 0),
+(5, 'handyman', 'Handyman', 'Demo', 'demo@handyman.com', '$2y$10$SHKMbnxdkJlNg4qcpYGkeOJJRAvmcl3BaG0a8kwvsz5nYNn3lLvM.', 'handyman', '4564552664', 181, 3924, 42865, 4, NULL, NULL, 1, 'Handyman Demo', NULL, 0, 'UTC', NULL, NULL, NULL, NULL, '2021-05-29 00:13:24', NULL, NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -54145,9 +54099,9 @@ INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `email`, `pass
 --
 
 CREATE TABLE `user_favourite_services` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `service_id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `service_id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -54160,11 +54114,11 @@ CREATE TABLE `user_favourite_services` (
 --
 
 CREATE TABLE `wallets` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `title` text COLLATE utf8mb4_unicode_ci,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
   `amount` double DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 1 COMMENT '1- Active , 0- InActive',
+  `status` tinyint DEFAULT '1' COMMENT '1- Active , 0- InActive',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -54176,12 +54130,12 @@ CREATE TABLE `wallets` (
 --
 
 CREATE TABLE `wallet_histories` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint DEFAULT NULL,
   `datetime` timestamp NULL DEFAULT NULL,
   `activity_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `activity_message` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `activity_data` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `activity_message` text COLLATE utf8mb4_unicode_ci,
+  `activity_data` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -54573,295 +54527,295 @@ ALTER TABLE `wallet_histories`
 -- AUTO_INCREMENT for table `app_settings`
 --
 ALTER TABLE `app_settings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `booking_activities`
 --
 ALTER TABLE `booking_activities`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `booking_address_mappings`
 --
 ALTER TABLE `booking_address_mappings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `booking_coupon_mappings`
 --
 ALTER TABLE `booking_coupon_mappings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `booking_handyman_mappings`
 --
 ALTER TABLE `booking_handyman_mappings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `booking_ratings`
 --
 ALTER TABLE `booking_ratings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `booking_statuses`
 --
 ALTER TABLE `booking_statuses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48315;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48315;
 
 --
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
 
 --
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `coupon_service_mappings`
 --
 ALTER TABLE `coupon_service_mappings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `handyman_payouts`
 --
 ALTER TABLE `handyman_payouts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `handyman_ratings`
 --
 ALTER TABLE `handyman_ratings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `handyman_types`
 --
 ALTER TABLE `handyman_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `media`
 --
 ALTER TABLE `media`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payment_gateways`
 --
 ALTER TABLE `payment_gateways`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `plans`
 --
 ALTER TABLE `plans`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `plan_limits`
 --
 ALTER TABLE `plan_limits`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `provider_address_mappings`
 --
 ALTER TABLE `provider_address_mappings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `provider_documents`
 --
 ALTER TABLE `provider_documents`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `provider_payouts`
 --
 ALTER TABLE `provider_payouts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `provider_service_address_mappings`
 --
 ALTER TABLE `provider_service_address_mappings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `provider_subscriptions`
 --
 ALTER TABLE `provider_subscriptions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `provider_taxes`
 --
 ALTER TABLE `provider_taxes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `provider_types`
 --
 ALTER TABLE `provider_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `service_faqs`
 --
 ALTER TABLE `service_faqs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `service_proofs`
 --
 ALTER TABLE `service_proofs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `sliders`
 --
 ALTER TABLE `sliders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4121;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4121;
 
 --
 -- AUTO_INCREMENT for table `static_data`
 --
 ALTER TABLE `static_data`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `subscription_transactions`
 --
 ALTER TABLE `subscription_transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `taxes`
 --
 ALTER TABLE `taxes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_favourite_services`
 --
 ALTER TABLE `user_favourite_services`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `wallets`
 --
 ALTER TABLE `wallets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `wallet_histories`
 --
 ALTER TABLE `wallet_histories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
